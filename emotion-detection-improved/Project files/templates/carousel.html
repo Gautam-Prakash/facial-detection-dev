@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          background: #F6E58D;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+          color: #4A235A;
+      }
+      .slideshow-container {
+          min-width: 500px;
+          max-width: 1000px;
+          max-height: 900px;
+          position: relative;
+          margin: auto;
+      }
+      .text {
+          color: #4A235A;
+          font-size: 15px;
+          padding: 8px 12px;
+          position: absolute;
+          bottom: 8px;
+          width: 100%;
+          text-align: center;
+      }
+      .numbertext {
+          color: #4A235A;
+          font-size: 12px;
+          padding: 8px 12px;
+          position: absolute;
+          top: 0;
+      }
+      .mySlides {
+          display: none;
+      }
+      .prev,.next {
+          display: none;
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          width: auto;
+          padding: 16px;
+          margin-top: -22px;
+          color: #4A235A;
+          font-weight: bold;
+          font-size: 18px;
+          transition: 0.6s ease;
+          border-radius: 0 3px 3px 0;
+          user-select: none;
+      }
+      .next {
+          right: 0;
+          border-radius: 3px 0 0 3px;
+      }
+      .prev:hover,.next:hover {
+          background-color: rgba(0, 0, 0, 0.1);
+      }
+      .dot {
+          height: 15px;
+          width: 15px;
+          margin: 0 2px;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+          transition: background-color 0.6s ease;
+      }
+      .active {
+          background-color: #717171;
+      }
+
+      button {
+        --c:  #229091; /* the color*/
+        
+        box-shadow: 0 0 0 .1em inset var(--c); 
+        --_g: linear-gradient(var(--c) 0 0) no-repeat;
+        background: 
+          var(--_g) calc(var(--_p,0%) - 100%) 0%,
+          var(--_g) calc(200% - var(--_p,0%)) 0%,
+          var(--_g) calc(var(--_p,0%) - 100%) 100%,
+          var(--_g) calc(200% - var(--_p,0%)) 100%;
+        background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
+        outline-offset: .1em;
+        transition: background-size .4s, background-position 0s .4s;
+        padding: 1%;
+        margin: 60px;
+        font-family: 'Roboto Mono', monospace;
+        font-weight: 600;
+      }
+      button:hover {
+        --_p: 100%;
+        transition: background-position .4s, background-size 0s;
+      }
+      button:active {
+        box-shadow: 0 0 9e9q inset #0009; 
+        background-color: var(--c);
+        color: #fff;
+      }
+
+      a{  
+        color : black;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      </style>
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <button onclick="showSlides()" style="font-weight: 600;" value="not" id="start">Start Model</button>    
+
+    <div class="slideshow-container">
+      <div class="mySlides">
+        <img src="../static/cat-1.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/cat-2.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-3.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-4.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-5.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-6.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-7.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-8.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-9.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-10.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-11.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-12.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-13.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-14.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-15.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-16.jpg" style="width: 100%" />
+      </div>
+      <div class="mySlides">
+        <img src="../static/img-17.jpg" style="width: 100%" />
+      </div>
+
+
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <script>
+      var slideIndex = 0;
+
+      function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+          slideIndex = 1;
+        }
+        slides[slideIndex - 1].style.display = "block";
+        document.getElementById("start").value = "start";
+        setTimeout(showSlides, 3000); // Change slide every 3 seconds
+      }
+
+      function plusSlides(n) {
+        slideIndex += n;
+        if (slideIndex < 1) {
+          slideIndex = slides.length;
+        } else if (slideIndex > slides.length) {
+          slideIndex = 1;
+        }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+      }
+    </script>
+
+    <button style="--c:#E95A49" value="stop" id="stop">Stop Model</button>
+
+    <script>
+      function startModel() {
+    fetch('/start_model', {
+        method: 'POST', 
+        credentials: 'same-origin' 
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("HTTP error " + response.status);
+        }
+        return response.text();
+    })
+    .then(result => {
+        console.log(result);
+    })
+    .catch(function() {
+        console.log('error occurred while starting the model');
+    });
+}
+
+document.getElementById('stop').addEventListener('click', function(){
+  document.location.href = "http://127.0.0.1:5000/stop_model"
+});
+
+function stopModel() {
+    fetch('/stop_model', {
+        method: 'POST',
+        credentials: 'same-origin'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("HTTP error " + response.status);
+        }
+        return response.text();
+    })
+    .then(result => {
+        window.location.href = result; 
+    })
+    .catch(function() {
+        console.log('error occurred while stopping the model');
+    });
+}
+
+document.getElementById('start').addEventListener('click', function() {
+    fetch('/button_clicked', {
+      method: 'POST'
+    });
+  });
+
+  
+      </script>
+  </body>
+</html>

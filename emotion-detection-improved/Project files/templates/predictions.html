@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+          font-family: 'Arial', sans-serif;
+          background-color: #BFC9CA;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          color: #212F3D;
+      }
+      h1 {
+          text-align: center;
+          margin-bottom: 20px;
+          font-size: 32px;
+          color: #212F3D;
+      }
+      table {
+          border-collapse: separate;
+          border-spacing: 0 15px;
+      }
+      th {
+          background-color: #4287f5;
+          color: white;
+      }
+      th, td {
+          width: 150px;
+          text-align: center;
+          border: 1px solid black;
+          padding: 5px;
+      }
+      .highlight {
+          background-color: #f6e58d;
+      }
+
+      form{
+        margin: 0.5%;
+      }
+	  
+	  th{
+	  text-align: center;
+	  }
+
+    </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Emotion Predictions</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Angry</th>
+                <th>Disgust</th>
+                <th>Fear</th>
+                <th>Happy</th>
+                <th>Sad</th>
+                <th>Surprise</th>
+                <th>Neutral</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for percentages in percentage_predictions %}
+                <tr>
+                    <td>Image {{ loop.index }}</td>
+                    {% for emotion, percentage in percentages.items() %}
+                        <td {% if percentage == max_percentages[loop.index0] %} class="highlight" {% endif %}>{{ percentage }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="/download_report" method="post">
+        <button type="submit" class = "btn btn-primary">Download Report</button>
+    </form>
+  </body>
+</html>
